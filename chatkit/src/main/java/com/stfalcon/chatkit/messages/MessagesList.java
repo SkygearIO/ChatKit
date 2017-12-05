@@ -26,6 +26,8 @@ import android.util.AttributeSet;
 
 import com.stfalcon.chatkit.commons.models.IMessage;
 
+import java.lang.ref.WeakReference;
+
 /**
  * Component for displaying list of messages
  */
@@ -86,7 +88,9 @@ public class MessagesList extends RecyclerView {
         adapter.setLayoutManager(layoutManager);
         adapter.setStyle(messagesListStyle);
 
-        addOnScrollListener(new RecyclerScrollMoreListener(layoutManager, adapter));
+        RecyclerScrollMoreListener listener = new RecyclerScrollMoreListener(layoutManager, adapter);
+        adapter.scrollMoreListener = new WeakReference<>(listener);
+        addOnScrollListener(listener);
         super.setAdapter(adapter);
     }
 

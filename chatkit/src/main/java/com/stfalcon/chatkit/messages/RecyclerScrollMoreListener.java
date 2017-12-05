@@ -25,9 +25,7 @@ class RecyclerScrollMoreListener
         extends RecyclerView.OnScrollListener {
 
     private OnLoadMoreListener loadMoreListener;
-    private int currentPage = 0;
-    private int previousTotalItemCount = 0;
-    private boolean loading = true;
+    private boolean listening = false;
 
     private RecyclerView.LayoutManager mLayoutManager;
 
@@ -48,44 +46,54 @@ class RecyclerScrollMoreListener
         return maxSize;
     }
 
+    private int getLastVisibleItemPosition() {
+        int lastVisibleItemPosition = 0;
+
+        if (mLayoutManager instanceof StaggeredGridLayoutManager) {
+            int[] lastVisibleItemPositions = ((StaggeredGridLayoutManager) mLayoutManager).findLastVisibleItemPositions(null);
+            lastVisibleItemPosition = getLastVisibleItem(lastVisibleItemPositions);
+        } else if (mLayoutManager instanceof LinearLayoutManager) {
+            lastVisibleItemPosition = ((LinearLayoutManager) mLayoutManager).findLastVisibleItemPosition();
+        } else if (mLayoutManager instanceof GridLayoutManager) {
+            lastVisibleItemPosition = ((GridLayoutManager) mLayoutManager).findLastVisibleItemPosition();
+        }
+
+        return lastVisibleItemPosition;
+    }
+
+    private boolean shouldTriggerLoadMore() {
+        int visibleThreshold = 5;
+        int lastVisibleItemPosition = getLastVisibleItemPosition();
+        int totalItemCount = mLayoutManager.getItemCount();
+        return this.listening && (lastVisibleItemPosition + visibleThreshold) > totalItemCount;
+    }
+
+    private void triggerLoadMore() {
+        int totalItemCount = mLayoutManager.getItemCount();
+        this.loadMoreListener.onLoadMore(totalItemCount);
+    }
+
     @Override
     public void onScrolled(RecyclerView view, int dx, int dy) {
         if (loadMoreListener != null) {
-            int lastVisibleItemPosition = 0;
-            int totalItemCount = mLayoutManager.getItemCount();
-
-            if (mLayoutManager instanceof StaggeredGridLayoutManager) {
-                int[] lastVisibleItemPositions = ((StaggeredGridLayoutManager) mLayoutManager).findLastVisibleItemPositions(null);
-                lastVisibleItemPosition = getLastVisibleItem(lastVisibleItemPositions);
-            } else if (mLayoutManager instanceof LinearLayoutManager) {
-                lastVisibleItemPosition = ((LinearLayoutManager) mLayoutManager).findLastVisibleItemPosition();
-            } else if (mLayoutManager instanceof GridLayoutManager) {
-                lastVisibleItemPosition = ((GridLayoutManager) mLayoutManager).findLastVisibleItemPosition();
-            }
-
-            if (totalItemCount < previousTotalItemCount) {
-                this.currentPage = 0;
-                this.previousTotalItemCount = totalItemCount;
-                if (totalItemCount == 0) {
-                    this.loading = true;
-                }
-            }
-
-            if (loading && (totalItemCount > previousTotalItemCount)) {
-                loading = false;
-                previousTotalItemCount = totalItemCount;
-            }
-
-            int visibleThreshold = 5;
-            if (!loading && (lastVisibleItemPosition + visibleThreshold) > totalItemCount) {
-                currentPage++;
-                loadMoreListener.onLoadMore(currentPage, totalItemCount);
-                loading = true;
+            if (this.shouldTriggerLoadMore()) {
+                this.triggerLoadMore();
             }
         }
     }
 
+    public void startListening() {
+        this.listening = true;
+        if (this.shouldTriggerLoadMore()) {
+            this.triggerLoadMore();
+        }
+    }
+
+    public void stopListening() {
+        this.listening = false;
+    }
+
     interface OnLoadMoreListener {
-        void onLoadMore(int page, int total);
+        void onLoadMore(int total);
     }
 }

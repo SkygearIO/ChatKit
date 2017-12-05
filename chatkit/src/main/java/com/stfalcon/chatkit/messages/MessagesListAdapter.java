@@ -58,6 +58,7 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
 
     protected static boolean isSelectionModeEnabled;
 
+    WeakReference<RecyclerScrollMoreListener> scrollMoreListener;
     private OnLoadMoreListener loadMoreListener;
     private OnMessageClickListener<MESSAGE> onMessageClickListener;
     private OnMessageViewClickListener<MESSAGE> onMessageViewClickListener;
@@ -121,9 +122,9 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
     }
 
     @Override
-    public void onLoadMore(int page, int total) {
+    public void onLoadMore(int total) {
         if (loadMoreListener != null) {
-            loadMoreListener.onLoadMore(page, total);
+            loadMoreListener.onLoadMore(total);
         }
     }
 
@@ -171,6 +172,20 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
         int oldSize = items.size();
         generateDateHeaders(messages);
         notifyItemRangeInserted(oldSize, items.size() - oldSize);
+    }
+
+    public void startListeningScroll() {
+        RecyclerScrollMoreListener listener = this.scrollMoreListener.get();
+        if (listener != null) {
+            listener.startListening();
+        }
+    }
+
+    public void stopListeningScroll() {
+        RecyclerScrollMoreListener listener = this.scrollMoreListener.get();
+        if (listener != null) {
+            listener.stopListening();
+        }
     }
 
     /**
@@ -623,10 +638,9 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
         /**
          * Fires when user scrolled to the end of list.
          *
-         * @param page            next page to download.
          * @param totalItemsCount current items count.
          */
-        void onLoadMore(int page, int totalItemsCount);
+        void onLoadMore(int totalItemsCount);
     }
 
     /**
