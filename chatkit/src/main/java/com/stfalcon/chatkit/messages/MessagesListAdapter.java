@@ -36,6 +36,7 @@ import com.stfalcon.chatkit.commons.ViewHolder;
 import com.stfalcon.chatkit.commons.models.IMessage;
 import com.stfalcon.chatkit.utils.DateFormatter;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -51,7 +52,7 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
 
     private MessageHolders holders;
     private String senderId;
-    private List<Wrapper> items;
+    protected List<Wrapper> items;
 
     private int selectedItemsCount;
     private SelectionListener selectionListener;
@@ -617,11 +618,11 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
     /*
     * WRAPPER
     * */
-    private class Wrapper<DATA> {
-        protected DATA item;
-        protected boolean isSelected;
+    protected class Wrapper<DATA> {
+        public DATA item;
+        public boolean isSelected;
 
-        Wrapper(DATA item) {
+        public Wrapper(DATA item) {
             this.item = item;
         }
     }
