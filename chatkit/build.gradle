@@ -44,7 +44,7 @@ bintray {
     configurations = ['archives']
     pkg {
         repo = 'maven'
-        name = 'chatkit'
+        name = 'ChatKit'
         userOrg = 'skygeario'
         licenses = ['Apache-2.0']
         vcsUrl = 'https://github.com/SkygearIO/ChatKit.git'
