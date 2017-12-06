@@ -88,7 +88,7 @@ public abstract class DemoMessagesActivity extends AppCompatActivity
     }
 
     @Override
-    public void onLoadMore(int page, int totalItemsCount) {
+    public void onLoadMore(int totalItemsCount) {
         if (totalItemsCount < TOTAL_MESSAGES_COUNT) {
             loadMessages();
         }
