@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
 
 android {
     compileSdkVersion 25
@@ -20,14 +21,38 @@ android {
     }
 }
 
-publish {
-    groupId = 'com.github.stfalcon'
-    artifactId = 'chatkit'
-    publishVersion = '0.2.2'
-    desc = 'ChatKit - is a library designed to simplify the development of UI for such a trivial task as chat. It have flexible possibilities for styling, customizing and data management'
-    licences = ['Apache-2.0']
-    uploadName = 'ChatKit'
-    website = 'https://github.com/stfalcon-studio/ChatKit.git'
+def chatKitVersion = "git describe --abbrev=0 --tags".execute().text.trim()
+def chatKitFullVersion = "git describe --always --tags".execute().text.trim()
+
+def bintrayUser = System.getenv('BINTRAY_USER')
+def bintrayApiKey = System.getenv('BINTRAY_API_KEY')
+
+if (project.rootProject.file('local.properties').exists()) {
+    Properties localProperties = new Properties()
+    localProperties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+    bintrayUser = localProperties.getProperty('bintrayUser', bintrayUser)
+    bintrayApiKey = localProperties.getProperty('bintrayApiKey', bintrayApiKey)
+}
+
+bintray {
+    user = bintrayUser
+    key = bintrayApiKey
+    configurations = ['archives']
+    pkg {
+        repo = 'maven'
+        name = 'chatkit'
+        userOrg = 'skygeario'
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/SkygearIO/ChatKit.git'
+        publish = true
+        version {
+            name = chatKitFullVersion
+            desc = "ChatKit - is a library designed to simplify the development of UI for such a trivial task as chat. It have flexible possibilities for styling, customizing and data management"
+            released  = new Date()
+            vcsTag = chatKitVersion
+        }
+    }
 }
 
 ext {
