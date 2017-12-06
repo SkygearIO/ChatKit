@@ -73,7 +73,8 @@ Thank you!
 ### License
 
 ```
-Copyright (C) 2017 stfalcon.com
+Original work Copyright 2016 stfalcon.com
+Modified work Copyright 2017 Oursky Ltd.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
