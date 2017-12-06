@@ -1,6 +1,6 @@
 package com.stfalcon.chatkit.sample.common.data.model;
 
-import com.stfalcon.chatkit.commons.models.IDialog;
+import io.skygear.chatkit.commons.models.IDialog;
 
 import java.util.ArrayList;
 

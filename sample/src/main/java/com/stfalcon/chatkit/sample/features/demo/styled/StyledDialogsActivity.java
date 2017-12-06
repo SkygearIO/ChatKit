@@ -4,13 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.stfalcon.chatkit.dialogs.DialogsList;
-import com.stfalcon.chatkit.dialogs.DialogsListAdapter;
+import io.skygear.chatkit.dialogs.DialogsList;
+import io.skygear.chatkit.dialogs.DialogsListAdapter;
 import com.stfalcon.chatkit.sample.R;
 import com.stfalcon.chatkit.sample.common.data.fixtures.DialogsFixtures;
 import com.stfalcon.chatkit.sample.common.data.model.Dialog;
 import com.stfalcon.chatkit.sample.features.demo.DemoDialogsActivity;
-import com.stfalcon.chatkit.utils.DateFormatter;
+import io.skygear.chatkit.utils.DateFormatter;
 
 import java.util.Date;
 

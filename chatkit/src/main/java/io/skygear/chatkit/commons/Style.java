@@ -14,7 +14,7 @@
  * limitations under the License.
  *******************************************************************************/
 
-package com.stfalcon.chatkit.commons;
+package io.skygear.chatkit.commons;
 
 import android.content.Context;
 import android.content.res.Resources;

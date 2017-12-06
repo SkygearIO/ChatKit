@@ -1,4 +1,4 @@
 # ViewHolder constructors are resolved by reflection
--keepclassmembers class * extends com.stfalcon.chatkit.commons.ViewHolder {
+-keepclassmembers class * extends ViewHolder {
    public <init>(android.view.View);
 }

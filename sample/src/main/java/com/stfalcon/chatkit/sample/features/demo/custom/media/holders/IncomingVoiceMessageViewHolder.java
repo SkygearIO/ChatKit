@@ -3,11 +3,11 @@ package com.stfalcon.chatkit.sample.features.demo.custom.media.holders;
 import android.view.View;
 import android.widget.TextView;
 
-import com.stfalcon.chatkit.messages.MessageHolders;
+import io.skygear.chatkit.messages.MessageHolders;
 import com.stfalcon.chatkit.sample.R;
 import com.stfalcon.chatkit.sample.common.data.model.Message;
 import com.stfalcon.chatkit.sample.utils.FormatUtils;
-import com.stfalcon.chatkit.utils.DateFormatter;
+import io.skygear.chatkit.utils.DateFormatter;
 
 /*
  * Created by troy379 on 05.04.17.

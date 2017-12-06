@@ -6,10 +6,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.stfalcon.chatkit.messages.MessageHolders;
-import com.stfalcon.chatkit.messages.MessageInput;
-import com.stfalcon.chatkit.messages.MessagesList;
-import com.stfalcon.chatkit.messages.MessagesListAdapter;
+import io.skygear.chatkit.messages.MessageHolders;
+import io.skygear.chatkit.messages.MessageInput;
+import io.skygear.chatkit.messages.MessagesList;
+import io.skygear.chatkit.messages.MessagesListAdapter;
 import com.stfalcon.chatkit.sample.R;
 import com.stfalcon.chatkit.sample.common.data.fixtures.MessagesFixtures;
 import com.stfalcon.chatkit.sample.common.data.model.Message;

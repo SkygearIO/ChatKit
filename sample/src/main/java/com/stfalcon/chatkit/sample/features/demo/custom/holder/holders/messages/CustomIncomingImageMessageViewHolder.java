@@ -2,7 +2,7 @@ package com.stfalcon.chatkit.sample.features.demo.custom.holder.holders.messages
 
 import android.view.View;
 
-import com.stfalcon.chatkit.messages.MessageHolders;
+import io.skygear.chatkit.messages.MessageHolders;
 import com.stfalcon.chatkit.sample.R;
 import com.stfalcon.chatkit.sample.common.data.model.Message;
 

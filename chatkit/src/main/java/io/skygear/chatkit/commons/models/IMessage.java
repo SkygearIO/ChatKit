@@ -14,7 +14,7 @@
  * limitations under the License.
  *******************************************************************************/
 
-package com.stfalcon.chatkit.commons.models;
+package io.skygear.chatkit.commons.models;
 
 import java.util.Date;
 

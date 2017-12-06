@@ -14,20 +14,27 @@
  * limitations under the License.
  *******************************************************************************/
 
-package com.stfalcon.chatkit.commons;
+package io.skygear.chatkit.commons.models;
 
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
+import io.skygear.chatkit.messages.MessageHolders;
+
+/*
+ * Created by troy379 on 28.03.17.
+ */
 
 /**
- * Base ViewHolder
+ * Interface used to mark messages as custom content types. For its representation see {@link MessageHolders}
  */
-public abstract class ViewHolder<DATA> extends RecyclerView.ViewHolder {
 
-    public abstract void onBind(DATA data);
+public interface MessageContentType extends IMessage {
 
-    public ViewHolder(View itemView) {
-        super(itemView);
+    /**
+     * Default media type for image message.
+     */
+    interface Image extends IMessage {
+        String getImageUrl();
     }
+
+    // other default types will be here
 
 }

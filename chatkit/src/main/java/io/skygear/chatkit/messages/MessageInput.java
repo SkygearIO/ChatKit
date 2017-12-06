@@ -14,7 +14,7 @@
  * limitations under the License.
  *******************************************************************************/
 
-package com.stfalcon.chatkit.messages;
+package io.skygear.chatkit.messages;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;

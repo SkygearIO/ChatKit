@@ -14,15 +14,31 @@
  * limitations under the License.
  *******************************************************************************/
 
-package com.stfalcon.chatkit.commons;
-
-import android.widget.ImageView;
+package io.skygear.chatkit.commons.models;
 
 /**
- * Callback for implementing images loading in message list
+ * For implementing by real user model
  */
-public interface ImageLoader {
+public interface IUser {
 
-    void loadImage(ImageView imageView, String url);
+    /**
+     * Returns the user's id
+     *
+     * @return the user's id
+     * */
+    String getId();
 
+    /**
+     * Returns the user's name
+     *
+     * @return the user's name
+     * */
+    String getName();
+
+    /**
+     * Returns the user's avatar image url
+     *
+     * @return the user's avatar image url
+     * */
+    String getAvatar();
 }

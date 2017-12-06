@@ -1,6 +1,6 @@
 package com.stfalcon.chatkit.sample.common.data.model;
 
-import com.stfalcon.chatkit.commons.models.IUser;
+import io.skygear.chatkit.commons.models.IUser;
 
 /*
  * Created by troy379 on 04.04.17.

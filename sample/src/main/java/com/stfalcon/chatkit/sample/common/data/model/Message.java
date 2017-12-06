@@ -1,7 +1,7 @@
 package com.stfalcon.chatkit.sample.common.data.model;
 
-import com.stfalcon.chatkit.commons.models.IMessage;
-import com.stfalcon.chatkit.commons.models.MessageContentType;
+import io.skygear.chatkit.commons.models.IMessage;
+import io.skygear.chatkit.commons.models.MessageContentType;
 
 import java.util.Date;
 

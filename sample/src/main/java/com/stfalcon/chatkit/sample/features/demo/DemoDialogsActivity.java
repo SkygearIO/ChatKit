@@ -6,8 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
-import com.stfalcon.chatkit.commons.ImageLoader;
-import com.stfalcon.chatkit.dialogs.DialogsListAdapter;
+import io.skygear.chatkit.commons.ImageLoader;
+import io.skygear.chatkit.dialogs.DialogsListAdapter;
 import com.stfalcon.chatkit.sample.common.data.model.Dialog;
 import com.stfalcon.chatkit.sample.utils.AppUtils;
 

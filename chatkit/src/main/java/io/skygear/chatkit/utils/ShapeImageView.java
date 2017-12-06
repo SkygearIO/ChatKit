@@ -14,7 +14,7 @@
  * limitations under the License.
  *******************************************************************************/
 
-package com.stfalcon.chatkit.utils;
+package io.skygear.chatkit.utils;
 
 import android.content.Context;
 import android.graphics.Canvas;

@@ -2,7 +2,7 @@ package com.stfalcon.chatkit.sample.features.demo.custom.holder.holders.dialogs;
 
 import android.view.View;
 
-import com.stfalcon.chatkit.dialogs.DialogsListAdapter;
+import io.skygear.chatkit.dialogs.DialogsListAdapter;
 import com.stfalcon.chatkit.sample.R;
 import com.stfalcon.chatkit.sample.common.data.model.Dialog;
 

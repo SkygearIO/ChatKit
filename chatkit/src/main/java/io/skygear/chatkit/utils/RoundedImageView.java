@@ -1,4 +1,4 @@
-package com.stfalcon.chatkit.utils;
+package io.skygear.chatkit.utils;
 
 import android.content.Context;
 import android.content.res.Resources;

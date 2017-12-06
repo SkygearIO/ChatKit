@@ -1,6 +1,5 @@
 /*******************************************************************************
- * Original work Copyright 2016 stfalcon.com
- * Modified work Copyright 2017 Oursky Ltd.
+ * Copyright 2016 stfalcon.com
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +14,7 @@
  * limitations under the License.
  *******************************************************************************/
 
-package com.stfalcon.chatkit.messages;
+package io.skygear.chatkit.dialogs;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
@@ -25,59 +24,69 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SimpleItemAnimator;
 import android.util.AttributeSet;
 
-import com.stfalcon.chatkit.commons.models.IMessage;
-
-import java.lang.ref.WeakReference;
+import io.skygear.chatkit.commons.models.IDialog;
 
 /**
- * Component for displaying list of messages
+ * Component for displaying list of dialogs
  */
-public class MessagesList extends RecyclerView {
-    private MessagesListStyle messagesListStyle;
+public class DialogsList extends RecyclerView {
 
-    public MessagesList(Context context) {
+    private DialogListStyle dialogStyle;
+
+    public DialogsList(Context context) {
         super(context);
     }
 
-    public MessagesList(Context context, @Nullable AttributeSet attrs) {
+    public DialogsList(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         parseStyle(context, attrs);
     }
 
-    public MessagesList(Context context, @Nullable AttributeSet attrs, int defStyle) {
+    public DialogsList(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         parseStyle(context, attrs);
     }
 
-    /**
-     * Don't use this method for setting your adapter, otherwise exception will by thrown.
-     * Call {@link #setAdapter(MessagesListAdapter)} instead.
-     */
     @Override
-    public void setAdapter(Adapter adapter) {
-        throw new IllegalArgumentException("You can't set adapter to MessagesList. Use #setAdapter(MessagesListAdapter) instead.");
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+
+        LinearLayoutManager layout = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        SimpleItemAnimator animator = new DefaultItemAnimator();
+
+        setLayoutManager(layout);
+        setItemAnimator(animator);
     }
 
     /**
-     * Sets adapter for MessagesList
-     *
-     * @param adapter   Adapter. Must extend MessagesListAdapter
-     * @param <MESSAGE> Message model class
+     * Don't use this method for setting your adapter, otherwise exception will by thrown.
+     * Call {@link #setAdapter(DialogsListAdapter)} instead.
      */
-    public <MESSAGE extends IMessage>
-    void setAdapter(MessagesListAdapter<MESSAGE> adapter) {
+    @Override
+    public void setAdapter(Adapter adapter) {
+        throw new IllegalArgumentException("You can't set adapter to DialogsList. Use #setAdapter(DialogsListAdapter) instead.");
+    }
+
+    /**
+     * Sets adapter for DialogsList
+     *
+     * @param adapter  Adapter. Must extend DialogsListAdapter
+     * @param <DIALOG> Dialog model class
+     */
+    public <DIALOG extends IDialog>
+    void setAdapter(DialogsListAdapter<DIALOG> adapter) {
         setAdapter(adapter, true);
     }
 
     /**
-     * Sets adapter for MessagesList
+     * Sets adapter for DialogsList
      *
-     * @param adapter       Adapter. Must extend MessagesListAdapter
+     * @param adapter       Adapter. Must extend DialogsListAdapter
      * @param reverseLayout weather to use reverse layout for layout manager.
-     * @param <MESSAGE>     Message model class
+     * @param <DIALOG>      Dialog model class
      */
-    public <MESSAGE extends IMessage>
-    void setAdapter(MessagesListAdapter<MESSAGE> adapter, boolean reverseLayout) {
+    public <DIALOG extends IDialog>
+    void setAdapter(DialogsListAdapter<DIALOG> adapter, boolean reverseLayout) {
         SimpleItemAnimator itemAnimator = new DefaultItemAnimator();
         itemAnimator.setSupportsChangeAnimations(false);
 
@@ -86,17 +95,14 @@ public class MessagesList extends RecyclerView {
 
         setItemAnimator(itemAnimator);
         setLayoutManager(layoutManager);
-        adapter.setLayoutManager(layoutManager);
-        adapter.setStyle(messagesListStyle);
 
-        RecyclerScrollMoreListener listener = new RecyclerScrollMoreListener(layoutManager, adapter);
-        adapter.scrollMoreListener = new WeakReference<>(listener);
-        addOnScrollListener(listener);
+        adapter.setStyle(dialogStyle);
+
         super.setAdapter(adapter);
     }
 
     @SuppressWarnings("ResourceType")
     private void parseStyle(Context context, AttributeSet attrs) {
-        messagesListStyle = MessagesListStyle.parse(context, attrs);
+        dialogStyle = DialogListStyle.parse(context, attrs);
     }
 }
