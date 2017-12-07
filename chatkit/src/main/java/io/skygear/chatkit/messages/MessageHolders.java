@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.stfalcon.chatkit.R;
+import io.skygear.chatkit.R;
 import io.skygear.chatkit.commons.ImageLoader;
 import io.skygear.chatkit.commons.ViewHolder;
 import io.skygear.chatkit.commons.models.IMessage;

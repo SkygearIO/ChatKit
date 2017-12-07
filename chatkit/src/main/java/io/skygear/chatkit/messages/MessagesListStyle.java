@@ -1,5 +1,6 @@
 /*******************************************************************************
- * Copyright 2016 stfalcon.com
+ * Original work Copyright 2016 stfalcon.com
+ * Modified work Copyright 2017 Oursky Ltd.
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +28,7 @@ import android.support.annotation.DrawableRes;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.AttributeSet;
 
-import com.stfalcon.chatkit.R;
+import io.skygear.chatkit.R;
 import io.skygear.chatkit.commons.Style;
 
 /**

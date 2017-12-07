@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.stfalcon.chatkit">
+          package="io.skygear.chatkit">
 
     <application
         android:allowBackup="true"
