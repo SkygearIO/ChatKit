@@ -58,6 +58,15 @@ bintray {
     }
 }
 
+task generateSourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier 'sources'
+}
+
+artifacts {
+    archives generateSourcesJar
+}
+
 ext {
     supportVersion = '25.3.1'
     flexboxVersion = '0.2.5'
